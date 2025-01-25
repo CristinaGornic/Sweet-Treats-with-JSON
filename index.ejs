@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sweets Recipes</title>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<body>
+  <h1>Sweets Town 🎂</h1>
+
+
+  <form action="/recipe" method="POST" class="buttons">
+    <button type="submit" value="Strawberry Shortcake" name="choice">🍰</button>
+    <button type="submit" value="Tiramisu" name="choice">🍮</button>
+    <button type="submit" value="Chocolate Lava Cake" name="choice">🌋</button>
+  </form>
+  <div id="recipeContainer" class="hidden">
+    <%if (locals.recipe) {%>
+
+      <h2 id="recipeTitle">
+        <%= recipe.name %>
+      </h2>
+
+      <h3>Ingredients:</h3>
+      <ul id="ingredientsList">
+        <li>
+          <%= recipe.ingredients.base.name %>, <%= recipe.ingredients.base.preparation %>
+        </li>
+        <li>
+          <%= recipe.ingredients.filling.name %>
+
+        </li>
+        <% recipe.ingredients.toppings.forEach(topping=> { %>
+          <li>
+            <%= topping.quantity %> of <%= topping.name %>
+          </li>
+          <% }) %>
+      </ul>
+
+      <%} else {%>
+        <h2>Pick your favourite sweet treat 👆</h2>
+        <%}%>
+  </div>
+</body>
+
+</html>
